@@ -10,10 +10,10 @@ services:
     networks:
       - app-network
     ports:
-      - "5050:5053"
+      - "5433:5432"
   web:
     build: .
-    command: python manage.py runserver 0.0.0.0:8000
+    command: gunicorn -b "0.0.0.0:8000" app.wsgi
     volumes:
       - .:/code
     ports:
